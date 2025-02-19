@@ -1,0 +1,26 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #31394b;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.button {
+  width: 10vw;
+  margin: 3vh;
+  border-radius: 10px;
+  background-color: rgb(149, 151, 154);
+  font-size: 20px;
+}
+
+.button:hover {
+  background-color: rgb(187, 191, 199);
+  cursor: pointer;
+  border: none;
+}
