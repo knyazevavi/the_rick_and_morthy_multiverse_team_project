@@ -80,14 +80,14 @@ Jest
    git add .
 
 4. **Создание коммита с описанием изменений**
-   git commit -m "fix: исправил ошибки линтера"
+   git commit -m "fix: Исправил ошибки линтера"
 
 5. **Отправка изменений в удаленный репозиторий**
    git push origin feature/my-feature
 6. **Создание Pull Request (PR)**
 7. **Перейдите в GitHub, во вкладку Pull Requests.**
 8. **Нажмите New Pull Request.**
-9. **Выберите develop как целевую ветку.**
+9. **Выберите main как целевую ветку.**
 10. **Описывайте внесенные изменения и отправьте на ревью..**
 
 ## Expanding the ESLint configuration
