@@ -25,13 +25,16 @@ export const Header = () => {
           <img src={logo} alt="Rick and Morty Logo" width="80" height="70" />
         </Typography>
         <div>
-          <Button color="inherit" component={Link} to="#">
+          <Button color="inherit" component={Link} to="signin">
             SignIn
           </Button>
-          <Button color="inherit" component={Link} to="#">
+          <Button color="inherit" component={Link} to="signup">
+            SignUp
+          </Button>
+          <Button color="inherit" component={Link} to="favorites">
             Favorites
           </Button>
-          <Button color="inherit" component={Link} to="#">
+          <Button color="inherit" component={Link} to="history">
             History
           </Button>
         </div>
