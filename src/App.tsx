@@ -4,6 +4,7 @@ import { Home } from "./pages/Home";
 import PageError from "./pages/404.tsx";
 import LoginForm from "./components/Sign-in.tsx";
 import RegistrationForm from "./components/Sign-up.tsx";
+import PrivateRoute from "./components/PrivateRoute.tsx";
 export const App = () => {
   return (
     <Router>
@@ -12,11 +13,14 @@ export const App = () => {
           <Route index element={<Home />} />
           <Route path="signin" element={<LoginForm />} />
           <Route path="signup" element={<RegistrationForm />} />
-          <Route path="/character/:id" element={<>character info</>} />
-          <Route path="/search" element={<>search</>} />
-          <Route path="favorites" element={<>favorite</>} />
+          <Route element={<PrivateRoute />}>
+            <Route path="favorites" element={<>favorite</>} />
+            <Route path="history" element={<>history</>} />
+          </Route>
+
           <Route path="search" element={<>search</>} />
-          <Route path="history" element={<>history</>} />
+          <Route path="/character/:id" element={<>character info</>} />
+
           <Route path="*" element={<PageError />} />
         </Route>
       </Routes>
