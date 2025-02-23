@@ -12,7 +12,7 @@
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,  
+    "noEmit": true,
     "jsx": "react-jsx",
     "composite": true,
 
@@ -25,4 +25,3 @@
   },
   "include": ["src"]
 }
-
