@@ -3,9 +3,14 @@ export interface HistoryState {
 }
 
 export interface UserState {
-  username: string | null;
+  email: string | null;
   isAuthenticated: boolean;
 }
+
+export type userRegistrationPayload = Omit<UserState, "isAuthenticated"> & {
+  password: string;
+  username: string;
+};
 
 export interface FavoriteState {
   favorites: number[];
