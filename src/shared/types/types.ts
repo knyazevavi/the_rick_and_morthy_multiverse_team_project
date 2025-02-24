@@ -3,7 +3,7 @@ export interface HistoryState {
 }
 
 export interface UserState {
-  email: string | null;
+  username?: string;
   isAuthenticated: boolean;
 }
 
