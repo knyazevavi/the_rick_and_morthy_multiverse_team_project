@@ -1,4 +1,5 @@
-import { Box, Typography, Link } from "@mui/material";
+import { Box, Typography, Link, Button } from "@mui/material";
+import { shareTelegramLink } from "../shared/constants/constants.ts";
 
 export const Footer = () => {
   return (
@@ -38,6 +39,7 @@ export const Footer = () => {
           Episodes
         </Link>
       </Box>
+      <Button href={shareTelegramLink}>Share Telegram</Button>
     </Box>
   );
 };
