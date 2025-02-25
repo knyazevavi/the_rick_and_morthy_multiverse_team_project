@@ -1,10 +1,12 @@
-import { TextField, Button, Container, Typography, Box } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 import { signin } from "../store/userSlice.ts";
 import { useAppDispatch } from "../hooks.ts";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { LoginFormData } from "../shared/types/types.ts";
+import { PATH } from "../shared/constants/constants.ts";
+import FormWrapper from "./formWrapper.tsx";
 
 const schema = yup.object().shape({
   email: yup.string().email("Incorrect format").required("E-mail is required"),
@@ -49,56 +51,43 @@ const LoginForm = () => {
     if (email.trim() && password.trim()) {
       dispatch(signin(JSON.parse(userData).username));
     }
-    navigate("/");
+    navigate(PATH.home);
   };
   return (
-    <Container maxWidth="xs">
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          mt: 8,
-          p: 4,
-          borderRadius: 2,
-          boxShadow: 3,
-          bgcolor: "#474f63",
-        }}
-      >
-        <form onSubmit={handleSubmit(handleLogin)}>
-          <Typography variant="h5" gutterBottom>
-            Login
-          </Typography>
-          <TextField
-            margin="dense"
-            fullWidth
-            name="email"
-            {...register("email")}
-            label="Email Address"
-            error={!!errors.email}
-            helperText={errors.email?.message || ""}
-          />
-          <TextField
-            margin="dense"
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            {...register("password")}
-            error={!!errors.password}
-            helperText={errors.password?.message || ""}
-          />
-          <Button
-            fullWidth
-            variant="contained"
-            type="submit"
-            sx={{ mt: 2, background: "#7f9df6" }}
-          >
-            Sign In
-          </Button>
-        </form>
-      </Box>
-    </Container>
+    <FormWrapper>
+      <form onSubmit={handleSubmit(handleLogin)}>
+        <Typography variant="h5" gutterBottom>
+          Login
+        </Typography>
+        <TextField
+          margin="dense"
+          fullWidth
+          name="email"
+          {...register("email")}
+          label="Email Address"
+          error={!!errors.email}
+          helperText={errors.email?.message || ""}
+        />
+        <TextField
+          margin="dense"
+          fullWidth
+          name="password"
+          label="Password"
+          type="password"
+          {...register("password")}
+          error={!!errors.password}
+          helperText={errors.password?.message || ""}
+        />
+        <Button
+          fullWidth
+          variant="contained"
+          type="submit"
+          sx={{ mt: 2, background: "#7f9df6" }}
+        >
+          Sign In
+        </Button>
+      </form>
+    </FormWrapper>
   );
 };
 

@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface HistoryState {
   history: string[];
 }
@@ -44,4 +46,8 @@ export interface LoginFormData {
 
 export interface RegistrationFormData extends LoginFormData {
   username: string;
+}
+
+export interface FormWrapperProps {
+  children: ReactNode;
 }

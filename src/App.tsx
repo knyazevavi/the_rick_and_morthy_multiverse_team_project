@@ -5,21 +5,22 @@ import PageError from "./pages/404.tsx";
 import LoginForm from "./components/Sign-in.tsx";
 import RegistrationForm from "./components/Sign-up.tsx";
 import PrivateRoute from "./components/PrivateRoute.tsx";
-export const App = () => {
+import { PATH } from "./shared/constants/constants.ts";
+const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path={PATH.home} element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="signin" element={<LoginForm />} />
-          <Route path="signup" element={<RegistrationForm />} />
+          <Route path={PATH.signin} element={<LoginForm />} />
+          <Route path={PATH.signup} element={<RegistrationForm />} />
           <Route element={<PrivateRoute />}>
-            <Route path="favorites" element={<>favorite</>} />
-            <Route path="history" element={<>history</>} />
+            <Route path={PATH.favorites} element={<>favorite</>} />
+            <Route path={PATH.history} element={<>history</>} />
           </Route>
 
-          <Route path="search" element={<>search</>} />
-          <Route path="/character/:id" element={<>character info</>} />
+          <Route path={PATH.search} element={<>search</>} />
+          <Route path={PATH.character + "/:id"} element={<>character info</>} />
 
           <Route path="*" element={<PageError />} />
         </Route>

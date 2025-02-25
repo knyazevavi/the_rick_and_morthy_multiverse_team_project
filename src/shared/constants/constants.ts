@@ -12,3 +12,13 @@ export const userInitialState: UserState = {
 export const favoriteInitialState: FavoriteState = {
   favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
 };
+
+export const PATH = {
+  signin: "signin",
+  signup: "signup",
+  favorites: "favorites",
+  history: "history",
+  search: "search",
+  character: "character",
+  home: "/",
+} as const;
