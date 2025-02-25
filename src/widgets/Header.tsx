@@ -35,7 +35,7 @@ export const Header = () => {
               <span>Hi {username}</span>
             </>
           ) : (
-            <></>
+            null
           )}
         </>
 
