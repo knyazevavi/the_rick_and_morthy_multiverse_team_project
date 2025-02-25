@@ -36,3 +36,12 @@ export interface Character {
   url: string;
   created: string;
 }
+
+export interface LoginFormData {
+  email: string;
+  password: string;
+}
+
+export interface RegistrationFormData extends LoginFormData {
+  username: string;
+}
