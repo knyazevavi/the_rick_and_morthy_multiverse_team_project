@@ -46,7 +46,6 @@ export const Header = () => {
               component={Link}
               to="/"
               onClick={() => {
-                console.log("click");
                 dispatch(signout());
               }}
             >
