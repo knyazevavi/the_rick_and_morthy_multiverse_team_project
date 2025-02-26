@@ -1,23 +1,19 @@
-import { TextField, Button, Typography } from "@mui/material";
-import { signup } from "../store/userSlice.ts";
-import { useAppDispatch } from "../hooks.ts";
-
-import { useNavigate } from "react-router-dom";
-import * as yup from "yup";
-
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { TextField, Button, Typography } from "@mui/material";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
-import { RegistrationFormData } from "../shared/types/types.ts";
+import { useAppDispatch } from "../hooks.ts";
+import { FormWrapper } from "./formWrapper.tsx";
+import { signUpSchema } from "../schema/sign-up.ts";
 import {
   EMAIL,
   PASSWORD,
   PATH,
   USERNAME,
 } from "../shared/constants/constants.ts";
-
-import { FormWrapper } from "./formWrapper.tsx";
-import { signUpSchema } from "../schema/sign-up.ts";
+import { RegistrationFormData } from "../shared/types/types.ts";
+import { signup } from "../store/userSlice.ts";
 
 export const RegistrationForm = () => {
   const {

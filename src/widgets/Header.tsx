@@ -1,9 +1,10 @@
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+
 import logo from "../assets/logo.png";
-import { signout } from "../store/userSlice.ts";
 import { useAppDispatch, useAppSelector } from "../hooks.ts";
 import { PATH } from "../shared/constants/constants.ts";
+import { signout } from "../store/userSlice.ts";
 
 export const Header = () => {
   const { isAuthenticated, username } = useAppSelector((state) => state.user);

@@ -1,5 +1,6 @@
-import { FormWrapperProps } from "../shared/types/types.ts";
 import { Box, Container } from "@mui/material";
+
+import { FormWrapperProps } from "../shared/types/types.ts";
 
 export const FormWrapper = ({ children }: FormWrapperProps) => {
   return (
