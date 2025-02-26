@@ -9,9 +9,9 @@ import ErrorBoundary from "./utils/ErrorBoundary.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ErrorBoundary>
-    <Provider store={store}>
-      <App />
-    </Provider>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ErrorBoundary>
   </StrictMode>
 );

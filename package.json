@@ -15,11 +15,13 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.5",
+    "@mui/system": "^6.4.3",
     "@reduxjs/toolkit": "^2.5.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^6.29.0"
+    "react-router-dom": "^6.29.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

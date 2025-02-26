@@ -28,7 +28,7 @@ export const Footer = () => {
         <Link href="/" color="inherit" underline="hover">
           Home
         </Link>
-        <Link href="#" color="inherit" underline="hover">
+        <Link href="/search" color="inherit" underline="hover">
           Characters
         </Link>
         <Link href="#" color="inherit" underline="hover">
