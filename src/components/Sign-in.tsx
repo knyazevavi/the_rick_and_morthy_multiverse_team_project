@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { LoginFormData } from "../shared/types/types.ts";
 import { PATH } from "../shared/constants/constants.ts";
 import FormWrapper from "./formWrapper.tsx";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
   email: yup.string().email("Incorrect format").required("E-mail is required"),
@@ -23,7 +24,8 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormData>({
-    validationSchema: schema,
+    resolver: yupResolver(schema),
+    mode: "onChange",
   });
 
   const dispatch = useAppDispatch();
