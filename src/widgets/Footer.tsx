@@ -1,8 +1,10 @@
 import { Box, Typography, Link, Button } from "@mui/material";
 
 import { shareTelegramLink } from "../shared/constants/constants.ts";
+import { useFeatureFlags } from "../utils/featureFlag.ts";
 
 export const Footer = () => {
+  const context = useFeatureFlags();
   return (
     <Box
       component="footer"
@@ -40,7 +42,9 @@ export const Footer = () => {
           Episodes
         </Link>
       </Box>
-      <Button href={shareTelegramLink}>Share Telegram</Button>
+      {context.featureSharedLinkByTelegram ? (
+        <Button href={shareTelegramLink}>Share Telegram</Button>
+      ) : null}
     </Box>
   );
 };
