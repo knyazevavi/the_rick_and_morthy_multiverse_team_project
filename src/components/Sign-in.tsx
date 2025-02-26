@@ -5,26 +5,19 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { LoginFormData } from "../shared/types/types.ts";
-import { PATH } from "../shared/constants/constants.ts";
-import FormWrapper from "./formWrapper.tsx";
+import { EMAIL, PASSWORD, PATH } from "../shared/constants/constants.ts";
+import { FormWrapper } from "./formWrapper.tsx";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { signInSchema } from "../schema/sign-in.ts";
 
-const schema = yup.object().shape({
-  email: yup.string().email("Incorrect format").required("E-mail is required"),
-  password: yup
-    .string()
-    .required("Password is required")
-    .min(4, "Password must be at least 4 characters"),
-});
-
-const LoginForm = () => {
+export const LoginForm = () => {
   const {
     register,
     setError,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signInSchema),
     mode: "onChange",
   });
 
@@ -35,7 +28,7 @@ const LoginForm = () => {
     const userData = localStorage.getItem(email);
 
     if (!userData) {
-      setError("email", {
+      setError(EMAIL, {
         type: "manual",
         message: "Invalid email or password",
       });
@@ -43,7 +36,7 @@ const LoginForm = () => {
     }
 
     if (JSON.parse(userData).password !== password) {
-      setError("password", {
+      setError(PASSWORD, {
         type: "manual",
         message: "Invalid email or password",
       });
@@ -64,8 +57,8 @@ const LoginForm = () => {
         <TextField
           margin="dense"
           fullWidth
-          name="email"
-          {...register("email")}
+          name={EMAIL}
+          {...register(EMAIL)}
           label="Email Address"
           error={!!errors.email}
           helperText={errors.email?.message || ""}
@@ -73,10 +66,10 @@ const LoginForm = () => {
         <TextField
           margin="dense"
           fullWidth
-          name="password"
-          label="Password"
-          type="password"
-          {...register("password")}
+          name={PASSWORD}
+          label={PASSWORD}
+          type={PASSWORD}
+          {...register(PASSWORD)}
           error={!!errors.password}
           helperText={errors.password?.message || ""}
         />
@@ -92,5 +85,3 @@ const LoginForm = () => {
     </FormWrapper>
   );
 };
-
-export default LoginForm;

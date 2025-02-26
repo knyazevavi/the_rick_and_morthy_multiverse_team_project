@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
-import PageError from "./pages/404.tsx";
-import LoginForm from "./components/Sign-in.tsx";
-import RegistrationForm from "./components/Sign-up.tsx";
-import PrivateRoute from "./components/PrivateRoute.tsx";
+import { PageError } from "./pages/404.tsx";
+import { LoginForm } from "./components/Sign-in.tsx";
+import { RegistrationForm } from "./components/Sign-up.tsx";
+import { PrivateRoute } from "./components/PrivateRoute.tsx";
 import { PATH } from "./shared/constants/constants.ts";
 const App = () => {
   return (

@@ -1,6 +1,7 @@
 import { FormWrapperProps } from "../shared/types/types.ts";
+import { Box, Container } from "@mui/material";
 
-const FormWrapper = ({ children }: FormWrapperProps) => {
+export const FormWrapper = ({ children }: FormWrapperProps) => {
   return (
     <Container maxWidth="xs">
       <Box
@@ -20,6 +21,3 @@ const FormWrapper = ({ children }: FormWrapperProps) => {
     </Container>
   );
 };
-import { Box, Container } from "@mui/material";
-
-export default FormWrapper;

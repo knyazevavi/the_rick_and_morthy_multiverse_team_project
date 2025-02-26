@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "../shared/constants/constants.ts";
 
-const PageError = () => {
+export const PageError = () => {
   const navigate = useNavigate();
 
   const handlerClick = () => {
@@ -32,5 +32,3 @@ const PageError = () => {
     </Box>
   );
 };
-
-export default PageError;

@@ -1,32 +1,31 @@
 import { TextField, Button, Typography } from "@mui/material";
 import { signup } from "../store/userSlice.ts";
 import { useAppDispatch } from "../hooks.ts";
+
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { RegistrationFormData } from "../shared/types/types.ts";
-import { PATH } from "../shared/constants/constants.ts";
-import FormWrapper from "./formWrapper.tsx";
-const schema = yup.object().shape({
-  email: yup.string().email("Incorrect format").required("E-mail is required"),
-  username: yup
-    .string()
-    .required("username is required")
-    .min(1, "username must be at least 1 characters"),
-  password: yup
-    .string()
-    .required("Password is required")
-    .min(4, "Password must be at least 4 characters"),
-});
 
-const RegistrationForm = () => {
+import { RegistrationFormData } from "../shared/types/types.ts";
+import {
+  EMAIL,
+  PASSWORD,
+  PATH,
+  USERNAME,
+} from "../shared/constants/constants.ts";
+
+import { FormWrapper } from "./formWrapper.tsx";
+import { signUpSchema } from "../schema/sign-up.ts";
+
+export const RegistrationForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<RegistrationFormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signUpSchema),
     mode: "onChange",
   });
 
@@ -46,27 +45,27 @@ const RegistrationForm = () => {
         <TextField
           margin="dense"
           fullWidth
-          name="email"
+          name={EMAIL}
           label="Email Address"
-          {...register("email")}
+          {...register(EMAIL)}
           error={!!errors.email}
           helperText={errors.email?.message}
         />
         <TextField
           margin="dense"
           fullWidth
-          label="username"
-          {...register("username")}
+          label={USERNAME}
+          {...register(USERNAME)}
           error={!!errors.username}
           helperText={errors.username?.message || ""}
         />
         <TextField
           margin="dense"
           fullWidth
-          name="password"
-          label="Password"
-          type="password"
-          {...register("password")}
+          name={PASSWORD}
+          label={PASSWORD}
+          type={PASSWORD}
+          {...register(PASSWORD)}
           error={!!errors.password}
           helperText={errors.password?.message}
         />
@@ -82,5 +81,3 @@ const RegistrationForm = () => {
     </FormWrapper>
   );
 };
-
-export default RegistrationForm;

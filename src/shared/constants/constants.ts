@@ -22,3 +22,7 @@ export const PATH = {
   character: "character",
   home: "/",
 } as const;
+
+export const EMAIL = "email";
+export const PASSWORD = "password";
+export const USERNAME = "username";
