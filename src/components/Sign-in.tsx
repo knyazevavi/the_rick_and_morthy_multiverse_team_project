@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks.ts";
 import { FormWrapper } from "./formWrapper.tsx";
 import { signInSchema } from "../schema/sign-in.ts";
-import { EMAIL, PASSWORD, PATH } from "../shared/constants/constants.ts";
+import { PATH, USER_ENTITIES } from "../shared/constants/constants.ts";
 import { LoginFormData } from "../shared/types/types.ts";
 import { signin } from "../store/userSlice.ts";
 
@@ -28,7 +28,7 @@ export const LoginForm = () => {
     const userData = localStorage.getItem(email);
 
     if (!userData) {
-      setError(EMAIL, {
+      setError(USER_ENTITIES.email, {
         type: "manual",
         message: "Invalid email or password",
       });
@@ -36,7 +36,7 @@ export const LoginForm = () => {
     }
 
     if (JSON.parse(userData).password !== password) {
-      setError(PASSWORD, {
+      setError(USER_ENTITIES.password, {
         type: "manual",
         message: "Invalid email or password",
       });
@@ -53,8 +53,8 @@ export const LoginForm = () => {
       <TextField
         margin="dense"
         fullWidth
-        name={EMAIL}
-        {...register(EMAIL)}
+        name={USER_ENTITIES.email}
+        {...register(USER_ENTITIES.email)}
         label="Email Address"
         error={!!errors.email}
         helperText={errors.email?.message || ""}
@@ -62,10 +62,10 @@ export const LoginForm = () => {
       <TextField
         margin="dense"
         fullWidth
-        name={PASSWORD}
-        label={PASSWORD}
-        type={PASSWORD}
-        {...register(PASSWORD)}
+        name={USER_ENTITIES.password}
+        label={USER_ENTITIES.password}
+        type={USER_ENTITIES.password}
+        {...register(USER_ENTITIES.password)}
         error={!!errors.password}
         helperText={errors.password?.message || ""}
       />

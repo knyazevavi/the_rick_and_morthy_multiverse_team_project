@@ -23,6 +23,8 @@ export const PATH = {
   home: "/",
 } as const;
 
-export const EMAIL = "email";
-export const PASSWORD = "password";
-export const USERNAME = "username";
+export const USER_ENTITIES = {
+  email: "email",
+  username: "username",
+  password: "password",
+};

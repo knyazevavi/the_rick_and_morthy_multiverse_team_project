@@ -6,12 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks.ts";
 import { FormWrapper } from "./formWrapper.tsx";
 import { signUpSchema } from "../schema/sign-up.ts";
-import {
-  EMAIL,
-  PASSWORD,
-  PATH,
-  USERNAME,
-} from "../shared/constants/constants.ts";
+import { PATH, USER_ENTITIES } from "../shared/constants/constants.ts";
 import { RegistrationFormData } from "../shared/types/types.ts";
 import { signup } from "../store/userSlice.ts";
 
@@ -40,27 +35,27 @@ export const RegistrationForm = () => {
       <TextField
         margin="dense"
         fullWidth
-        name={EMAIL}
+        name={USER_ENTITIES.email}
         label="Email Address"
-        {...register(EMAIL)}
+        {...register(USER_ENTITIES.email)}
         error={!!errors.email}
         helperText={errors.email?.message}
       />
       <TextField
         margin="dense"
         fullWidth
-        label={USERNAME}
-        {...register(USERNAME)}
+        label={USER_ENTITIES.username}
+        {...register(USER_ENTITIES.username)}
         error={!!errors.username}
         helperText={errors.username?.message || ""}
       />
       <TextField
         margin="dense"
         fullWidth
-        name={PASSWORD}
-        label={PASSWORD}
-        type={PASSWORD}
-        {...register(PASSWORD)}
+        name={USER_ENTITIES.password}
+        label={USER_ENTITIES.password}
+        type={USER_ENTITIES.password}
+        {...register(USER_ENTITIES.password)}
         error={!!errors.password}
         helperText={errors.password?.message}
       />
