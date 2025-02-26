@@ -34,7 +34,7 @@ export const Header = () => {
         >
           <img src={logo} alt="Rick and Morty Logo" width="80" height="70" />
         </Typography>
-        <>{isAuthenticated ? <span>Hi {username}</span> : null}</>
+        {isAuthenticated ? <span>Hi {username}</span> : null}
 
         <div>
           {isAuthenticated ? (
