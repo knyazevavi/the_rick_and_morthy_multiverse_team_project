@@ -52,3 +52,5 @@ export type FormWrapperProps = {
   children: ReactNode;
   name: string;
 };
+
+export type FeatureFlags = Record<string, boolean | undefined>;
