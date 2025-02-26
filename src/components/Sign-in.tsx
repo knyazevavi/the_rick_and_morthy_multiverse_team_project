@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { TextField, Button, Typography } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -49,39 +49,34 @@ export const LoginForm = () => {
     navigate(PATH.home);
   };
   return (
-    <FormWrapper>
-      <form onSubmit={handleSubmit(handleLogin)}>
-        <Typography variant="h5" gutterBottom>
-          Login
-        </Typography>
-        <TextField
-          margin="dense"
-          fullWidth
-          name={EMAIL}
-          {...register(EMAIL)}
-          label="Email Address"
-          error={!!errors.email}
-          helperText={errors.email?.message || ""}
-        />
-        <TextField
-          margin="dense"
-          fullWidth
-          name={PASSWORD}
-          label={PASSWORD}
-          type={PASSWORD}
-          {...register(PASSWORD)}
-          error={!!errors.password}
-          helperText={errors.password?.message || ""}
-        />
-        <Button
-          fullWidth
-          variant="contained"
-          type="submit"
-          sx={{ mt: 2, background: "#7f9df6" }}
-        >
-          Sign In
-        </Button>
-      </form>
+    <FormWrapper name={"Login"} handler={handleSubmit(handleLogin)}>
+      <TextField
+        margin="dense"
+        fullWidth
+        name={EMAIL}
+        {...register(EMAIL)}
+        label="Email Address"
+        error={!!errors.email}
+        helperText={errors.email?.message || ""}
+      />
+      <TextField
+        margin="dense"
+        fullWidth
+        name={PASSWORD}
+        label={PASSWORD}
+        type={PASSWORD}
+        {...register(PASSWORD)}
+        error={!!errors.password}
+        helperText={errors.password?.message || ""}
+      />
+      <Button
+        fullWidth
+        variant="contained"
+        type="submit"
+        sx={{ mt: 2, background: "#7f9df6" }}
+      >
+        Sign In
+      </Button>
     </FormWrapper>
   );
 };

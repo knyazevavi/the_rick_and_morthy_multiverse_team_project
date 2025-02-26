@@ -50,4 +50,5 @@ export type RegistrationFormData = {
 
 export type FormWrapperProps = {
   children: ReactNode;
+  name: string;
 };
