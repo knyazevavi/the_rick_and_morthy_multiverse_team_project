@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { userInitialState } from "../shared/constants/constants";
+import { STORE_KEYS } from "../shared/constants/constants";
 
 const userSlice = createSlice({
   name: "user",
@@ -8,14 +9,12 @@ const userSlice = createSlice({
     signin: (state, action: PayloadAction<string>) => {
       state.username = action.payload;
       state.isAuthenticated = true;
-      //todo
-      // localStorage.setItem("user", JSON.stringify(state));
+      localStorage.setItem(STORE_KEYS.USER, JSON.stringify(state));
     },
     signout: (state) => {
-      state.username = null;
+      state.username = "";
       state.isAuthenticated = false;
-      //todo
-      // localStorage.removeItem("user");
+      localStorage.removeItem(STORE_KEYS.USER);
     },
   },
 });

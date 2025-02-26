@@ -31,3 +31,16 @@ export interface Character {
   url: string;
   created: string;
 }
+
+export type SearchProps = {
+  onSearch: (name: string) => void;
+};
+
+export interface CardProps {
+  character: Character;
+}
+
+export interface CharactersListProps {
+  characters: Character[];
+  setPage: (page: number) => void;
+}
