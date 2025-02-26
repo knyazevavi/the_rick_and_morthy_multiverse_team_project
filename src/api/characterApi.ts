@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Character } from "../shared/types/types";
+
 import { BASE_URL, CHARACTER_ENDPOINT } from "../shared/constants/api";
+import { Character } from "../shared/types/types";
 
 export const characterApi = createApi({
   reducerPath: "characterApi",

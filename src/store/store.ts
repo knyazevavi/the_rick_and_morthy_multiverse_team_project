@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { characterApi } from "../api/characterApi";
-import userSlice from "./userSlice";
-import historySlice from "./historySlice";
+
 import favoriteSlice from "./favoriteSlice";
+import historySlice from "./historySlice";
+import userSlice from "./userSlice";
+import { characterApi } from "../api/characterApi";
 import { loggerMiddleware } from "../shared/middlewares/loggerMiddleware";
 
 export const store = configureStore({

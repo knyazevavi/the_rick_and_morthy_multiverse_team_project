@@ -1,8 +1,19 @@
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+
 import logo from "../assets/logo.png";
+import { useAppDispatch, useAppSelector } from "../hooks.ts";
+import { PATH } from "../shared/constants/constants.ts";
+import { signout } from "../store/userSlice.ts";
 
 export const Header = () => {
+  const { isAuthenticated, username } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
+  const handlerClick = () => {
+    dispatch(signout());
+  };
+
   return (
     <AppBar position="static">
       <Toolbar
@@ -16,7 +27,7 @@ export const Header = () => {
         <Typography
           variant="h6"
           component={Link}
-          to="/"
+          to={PATH.home}
           sx={{
             textDecoration: "none",
             color: "inherit",
@@ -24,14 +35,33 @@ export const Header = () => {
         >
           <img src={logo} alt="Rick and Morty Logo" width="80" height="70" />
         </Typography>
+        {isAuthenticated ? <span>Hi {username}</span> : null}
+
         <div>
-          <Button color="inherit" component={Link} to="#">
-            SignIn
-          </Button>
-          <Button color="inherit" component={Link} to="#">
+          {isAuthenticated ? (
+            <Button
+              color="inherit"
+              component={Link}
+              to={PATH.home}
+              onClick={handlerClick}
+            >
+              Logout
+            </Button>
+          ) : (
+            <>
+              <Button color="inherit" component={Link} to={PATH.signin}>
+                SignIn
+              </Button>
+              <Button color="inherit" component={Link} to={PATH.signup}>
+                SignUp
+              </Button>
+            </>
+          )}
+
+          <Button color="inherit" component={Link} to={PATH.favorites}>
             Favorites
           </Button>
-          <Button color="inherit" component={Link} to="#">
+          <Button color="inherit" component={Link} to={PATH.history}>
             History
           </Button>
         </div>

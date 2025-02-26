@@ -14,3 +14,19 @@ export const shareTelegramLink = `https://telegram.me/share/url?url=${encodeURIC
 export const favoriteInitialState: FavoriteState = {
   favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
 };
+
+export const PATH = {
+  signin: "signin",
+  signup: "signup",
+  favorites: "favorites",
+  history: "history",
+  search: "search",
+  character: "character",
+  home: "/",
+} as const;
+
+export const USER_ENTITIES = {
+  email: "email",
+  username: "username",
+  password: "password",
+} as const;

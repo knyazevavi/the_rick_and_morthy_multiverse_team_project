@@ -1,17 +1,24 @@
-export interface HistoryState {
-  history: string[];
-}
+import { ReactNode } from "react";
 
-export interface UserState {
+export type HistoryState = {
+  history: string[];
+};
+
+export type UserState = {
   username?: string;
   isAuthenticated: boolean;
-}
+};
 
-export interface FavoriteState {
+export type userRegistrationPayload = Omit<UserState, "isAuthenticated"> & {
+  password: string;
+  username: string;
+};
+
+export type FavoriteState = {
   favorites: number[];
-}
+};
 
-export interface Character {
+export type Character = {
   id: number;
   name: string;
   status: string;
@@ -30,4 +37,18 @@ export interface Character {
   episode: string[];
   url: string;
   created: string;
-}
+};
+
+export type LoginFormData = {
+  email: string;
+  password: string;
+};
+
+export type RegistrationFormData = {
+  username: string;
+} & LoginFormData;
+
+export type FormWrapperProps = {
+  children: ReactNode;
+  name: string;
+};
