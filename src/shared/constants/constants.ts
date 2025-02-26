@@ -27,4 +27,4 @@ export const USER_ENTITIES = {
   email: "email",
   username: "username",
   password: "password",
-};
+} as const;
