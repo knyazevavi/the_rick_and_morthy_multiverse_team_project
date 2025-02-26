@@ -27,6 +27,7 @@ export const RegistrationForm = () => {
     dispatch(signup(data));
     navigate(PATH.home);
   };
+  //TODO https://github.com/knyazevavi/the_rick_and_morthy_multiverse_team_project/pull/1#discussion_r1971364070
   return (
     <FormWrapper
       name={"Registration"}
