@@ -1,9 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
 
-import { useAppSelector } from "../hooks.ts";
 import { PATH } from "../shared/constants/constants.ts";
+import { selectorUser } from "../store/selectors/userSelectors.ts";
 
 export const PrivateRoute = () => {
-  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
+  const { isAuthenticated } = selectorUser();
+
   return isAuthenticated ? <Outlet /> : <Navigate to={PATH.signin} />;
 };
