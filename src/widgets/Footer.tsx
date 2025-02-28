@@ -1,5 +1,6 @@
 import { Box, Typography, Link, Button } from "@mui/material";
 
+import { PATH } from "../shared/constants/constants.ts";
 import { shareTelegramLink } from "../shared/constants/constants.ts";
 import { useFeatureFlags } from "../utils/featureFlag.ts";
 
@@ -29,16 +30,16 @@ export const Footer = () => {
           color: "#ffcc00",
         }}
       >
-        <Link href="/" color="inherit" underline="hover">
+        <Link href={PATH.home} color="inherit" underline="hover">
           Home
         </Link>
-        <Link href="#" color="inherit" underline="hover">
+        <Link href={PATH.search} color="inherit" underline="hover">
           Characters
         </Link>
-        <Link href="#" color="inherit" underline="hover">
+        <Link href={PATH.dimensions} color="inherit" underline="hover">
           Dimensions
         </Link>
-        <Link href="#" color="inherit" underline="hover">
+        <Link href={PATH.episodes} color="inherit" underline="hover">
           Episodes
         </Link>
       </Box>

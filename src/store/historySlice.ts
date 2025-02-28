@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { historyInitialState } from "../shared/constants/constants";
+import { STORE_KEYS } from "../shared/constants/constants";
 
 const historySlice = createSlice({
   name: "searchHistory",
@@ -11,7 +12,7 @@ const historySlice = createSlice({
       if (state.history.length > 10) {
         state.history.pop();
       }
-      localStorage.setItem("searchHistory", JSON.stringify(state.history));
+      localStorage.setItem(STORE_KEYS.HISTORY, JSON.stringify(state.history));
     },
   },
 });

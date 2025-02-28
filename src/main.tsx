@@ -6,7 +6,7 @@ import App from "./App.tsx";
 import { FeatureFlagProvider } from "./components/FeatureFlagProvider.tsx";
 import { store } from "./store/store.ts";
 import "./styles/index.css";
-import { ErrorBoundary } from "./utils/ErrorBoundary.tsx";
+import ErrorBoundary from "./utils/ErrorBoundary.tsx";
 import { featureFlags } from "./utils/featureFlag.ts";
 
 createRoot(document.getElementById("root")!).render(

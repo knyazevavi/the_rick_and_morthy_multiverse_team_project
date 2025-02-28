@@ -1,2 +1,4 @@
-export const BASE_URL = "https://rickandmortyapi.com/api";
-export const CHARACTER_ENDPOINT = "/character";
+export const API = {
+  BASE_URL: "https://rickandmortyapi.com/api",
+  CHARACTER: "/character",
+};

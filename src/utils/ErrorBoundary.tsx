@@ -1,27 +1,39 @@
 import * as React from "react";
 
-export class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
+import { ErrorBoundaryState } from "../shared/types/types";
+
+export default class ErrorBoundary extends React.Component<
+  React.PropsWithChildren<Record<string, never>>,
+  ErrorBoundaryState
+> {
+  constructor() {
+    super({});
+    this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
   }
 
-  componentDidCatch(error, info) {
-    logErrorToMyService(error, info.componentStack, React.captureOwnerStack());
+  componentDidCatch(error: Error, info: React.ErrorInfo) {
+    console.error("ErrorBoundary caught error:", error, info.componentStack);
   }
+
+  handleReset = () => {
+    this.setState({ hasError: false, error: null });
+  };
 
   render() {
-    const { error } = this.state;
-
-    if (error) {
+    if (this.state.hasError) {
       return (
         <div>
-          <p>Something went wrong!</p>
-          <p>{error.message}</p>
+          <p>Что-то пошло не так!</p>
+          <p>
+            {this.state.error instanceof Error
+              ? this.state.error?.message
+              : "Неизвестная ошибка"}
+          </p>
+          <button onClick={this.handleReset}>Попробовать снова</button>
         </div>
       );
     }
