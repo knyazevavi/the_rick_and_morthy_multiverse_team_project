@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
-import { useParams } from "react-router-dom";
-import CharacterDetails from "../components/CharacterDetails";
+import { Container, Typography } from "@mui/material";
+import { useParams, Navigate } from "react-router-dom";
+import { CharacterDetails } from "../components/CharacterDetails";
 import { useGetCharacterByIdQuery } from "../api/characterApi";
 import { Loader } from "../components/Loader";
 
@@ -13,25 +13,22 @@ export const CharacterPage = () => {
     error,
   } = useGetCharacterByIdQuery(id ?? "");
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  const errorHandler = () => {
+    const apiError = error as { status?: number };
 
-  if (error) {
-    return (
-      <Typography variant="h6" color="error">
-        Error: {error.toString()}
-      </Typography>
-    );
-  }
+    if (apiError?.status === 404) {
+      return <Navigate to="/404" replace />;
+    }
+    return <Typography variant="h6"> Something went wrong.</Typography>;
+  };
 
-  if (!character) {
-    return (
-      <Typography variant="h3" sx={{ color: "white" }}>
-        Character not found
-      </Typography>
-    );
-  }
-
-  return <CharacterDetails character={character} />;
+  return (
+    <Container>
+      {isLoading && <Loader />}
+      {error && errorHandler()}
+      {!isLoading && !error && character && (
+        <CharacterDetails character={character} />
+      )}
+    </Container>
+  );
 };

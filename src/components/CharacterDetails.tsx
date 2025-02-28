@@ -1,16 +1,15 @@
 import { Box, Button, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-import { Character } from "../shared/types/types";
+import { CardProps } from "../shared/types/types";
 
-interface CharacterProps {
-  character: Character;
-}
+export const CharacterDetails = ({ character }: CardProps) => {
+  const navigate = useNavigate();
 
-const backHandler = () => {
-  history.back();
-};
+  const backHandler = () => {
+    navigate(-1);
+  };
 
-const CharacterDetails = ({ character }: CharacterProps) => {
   return (
     <Box>
       <Button variant="text" sx={{ color: "white" }} onClick={backHandler}>
@@ -30,5 +29,3 @@ const CharacterDetails = ({ character }: CharacterProps) => {
     </Box>
   );
 };
-
-export default CharacterDetails;
