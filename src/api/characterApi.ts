@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Character } from "../shared/types/types";
-import { CHARACTER_ENDPOINT } from "../shared/constants/api";
+
 import { API } from "../shared/constants/api";
+import { Character } from "../shared/types/types";
 
 export const characterApi = createApi({
   reducerPath: "characterApi",
@@ -12,10 +12,10 @@ export const characterApi = createApi({
       { filter?: string; page: number }
     >({
       query: ({ page = 1, filter }) =>
-        `${CHARACTER_ENDPOINT}/?name=${filter}&page=${page}`,
+        `${API.CHARACTER}/?name=${filter}&page=${page}`,
     }),
     getCharacterById: builder.query<Character, string>({
-      query: (id) => `${CHARACTER_ENDPOINT}/${id}`,
+      query: (id) => `${API.CHARACTER}/${id}`,
     }),
   }),
 });

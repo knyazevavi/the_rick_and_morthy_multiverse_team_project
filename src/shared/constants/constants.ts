@@ -29,6 +29,9 @@ export const PATH = {
   search: "search",
   character: "character",
   home: "/",
+  page404: "*",
+  dimensions: "#",
+  episodes: "#",
 } as const;
 
 export const USER_ENTITIES = {

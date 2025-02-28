@@ -1,9 +1,11 @@
-import { Box, Typography, Paper } from "@mui/material";
-import { getStatusColor } from "../shared/lib/getStatusColor";
+import { Paper } from "@mui/material";
+
+import { CharacterImage } from "./CharacterImage";
+import { CharacterInfo } from "./CharacterInfo";
 import { CardProps } from "../shared/types/types";
 
 export const CharacterItemSearch = ({ character }: CardProps) => {
-  const { name, gender, image, species, type, status } = character;
+  const { name, image } = character;
 
   return (
     <Paper
@@ -21,65 +23,8 @@ export const CharacterItemSearch = ({ character }: CardProps) => {
         cursor: "pointer",
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Box
-          component="img"
-          src={image}
-          alt={name}
-          sx={{
-            width: 150,
-            height: 200,
-            objectFit: "cover",
-            borderRadius: 2,
-            border: "2px solid",
-            borderColor: "grey.300",
-          }}
-        />
-      </Box>
-
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
-        <Typography variant="h5" fontWeight="bold">
-          {name}
-        </Typography>
-
-        <Box
-          sx={{ display: "flex", alignItems: "center", gap: 1, margin: "10px" }}
-        >
-          <Box
-            sx={{
-              width: 12,
-              height: 12,
-              borderRadius: "50%",
-              bgcolor: getStatusColor(status),
-            }}
-          />
-          <Typography variant="body1">
-            {status} - {species}
-          </Typography>
-        </Box>
-
-        <Typography variant="body2" color="text.secondary">
-          Gender: {gender}
-        </Typography>
-
-        {type && (
-          <Typography variant="body2" color="text.secondary">
-            Type: {type}
-          </Typography>
-        )}
-      </Box>
+      <CharacterImage image={image} name={name} />
+      <CharacterInfo character={character} />
     </Paper>
   );
 };

@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 export const NavigationButton = ({
   title,
   params,
+  onClick,
 }: {
   title: string;
   params: string;
+  onClick?: () => void;
 }) => {
   return (
     <Button
@@ -21,6 +23,7 @@ export const NavigationButton = ({
           fontWeight: "bold",
         },
       }}
+      onClick={onClick}
     >
       {title}
     </Button>

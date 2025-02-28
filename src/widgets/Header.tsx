@@ -1,9 +1,10 @@
-import { AppBar, Toolbar, Typography, Box, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import { NavigationButton } from "../shared/ui/NavigationButton";
+
 import logo from "../assets/logo.png";
 import { useAppDispatch, useAppSelector } from "../hooks.ts";
 import { PATH } from "../shared/constants/constants.ts";
+import { NavigationButton } from "../shared/ui/NavigationButton";
 import { signout } from "../store/userSlice.ts";
 
 export const Header = () => {
@@ -38,21 +39,16 @@ export const Header = () => {
         {isAuthenticated ? <span>Hi {username}</span> : null}
         <Box>
           {isAuthenticated ? (
-            <Button
-              color="inherit"
-              component={Link}
-              to={PATH.home}
+            <NavigationButton
+              title="Logout"
+              params={PATH.home}
               onClick={handlerClick}
-            >
-              Logout
-            </Button>
+            />
           ) : (
             <>
               <NavigationButton title="SignIn" params={PATH.signin} />
-              <NavigationButton title="Search" params="/search" />
-              <Button color="inherit" component={Link} to={PATH.signup}>
-                SignUp
-              </Button>
+              <NavigationButton title="Search" params={PATH.search} />
+              <NavigationButton title="SignUp" params={PATH.signup} />
             </>
           )}
           <NavigationButton title="Favorites" params={PATH.favorites} />

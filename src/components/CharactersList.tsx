@@ -1,12 +1,16 @@
 import { Box } from "@mui/material";
-import { CharacterItemSearch } from "./CharacterItemSearch";
 import Grid from "@mui/material/Grid2";
 import { v4 as uuidv4 } from "uuid";
-import { CharactersListProps } from "../shared/types/types";
+
+import { CharacterItemSearch } from "./CharacterItemSearch";
 import { useCharacterNavigation } from "../hooks/useCharacterNavigation";
+import { CharactersListProps } from "../shared/types/types";
 
 export const CharactersList = ({ characters }: CharactersListProps) => {
   const navigate = useCharacterNavigation();
+  const handleClick = (id: number) => {
+    navigate(id);
+  };
   return (
     <Box>
       <Grid container spacing={3} justifyContent="center">
@@ -19,7 +23,7 @@ export const CharactersList = ({ characters }: CharactersListProps) => {
             }}
             key={uuidv4()}
             component="div"
-            onClick={() => navigate(character.id)}
+            onClick={() => handleClick(character.id)}
           >
             <CharacterItemSearch character={character} />
           </Grid>

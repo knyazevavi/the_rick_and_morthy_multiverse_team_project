@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
 import { TextField, Autocomplete, CircularProgress } from "@mui/material";
+import { useState, useEffect } from "react";
+
 import { useLazyGetCharactersQuery } from "../api/characterApi";
-import { useDebounce } from "../hooks/useDebounce";
 import { useCharacterNavigation } from "../hooks/useCharacterNavigation";
+import { useDebounce } from "../hooks/useDebounce";
+import { Character } from "../shared/types/types";
 
 export const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,6 +18,19 @@ export const Search = () => {
     }
   }, [debouncedSearchTerm, fetch]);
 
+  const handleInputChange = (_: React.SyntheticEvent, value: string) => {
+    setSearchTerm(value);
+  };
+
+  const handleChange = (
+    _: React.SyntheticEvent | null,
+    newValue: Character | null,
+  ) => {
+    if (newValue) {
+      navigate(newValue.id);
+    }
+  };
+
   return (
     <>
       <Autocomplete
@@ -23,12 +38,8 @@ export const Search = () => {
         options={data?.results || []}
         getOptionLabel={(option) => option.name}
         loading={isLoading}
-        onInputChange={(_, value) => setSearchTerm(value)}
-        onChange={(_, newValue) => {
-          if (newValue) {
-            navigate(newValue.id);
-          }
-        }}
+        onInputChange={handleInputChange}
+        onChange={handleChange}
         sx={{
           mt: 20,
           "& .MuiOutlinedInput-root": {

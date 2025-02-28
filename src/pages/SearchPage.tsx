@@ -1,10 +1,11 @@
 import { Container, Box } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
-import { Search } from "../components/Search";
-import { CharactersList } from "../components/CharactersList";
-import { useGetCharactersQuery } from "../api/characterApi";
-import { Loader } from "../components/Loader";
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
+import { useGetCharactersQuery } from "../api/characterApi";
+import { CharactersList } from "../components/CharactersList";
+import { Loader } from "../components/Loader";
+import { Search } from "../components/Search";
 
 export const SearchPage = () => {
   const [searchParams] = useSearchParams();

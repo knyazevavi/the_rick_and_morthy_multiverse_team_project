@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { STORE_KEYS } from "../shared/constants/constants";
 import { userInitialState } from "../shared/constants/constants";
 import { userRegistrationPayload } from "../shared/types/types.ts";

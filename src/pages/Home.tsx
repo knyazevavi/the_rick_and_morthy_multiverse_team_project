@@ -1,4 +1,5 @@
 import { Typography, Container, Box } from "@mui/material";
+
 import { Search } from "../components/Search";
 
 export const Home = () => {
