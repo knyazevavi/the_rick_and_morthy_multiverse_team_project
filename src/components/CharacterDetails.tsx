@@ -1,9 +1,9 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import { CardProps } from "../shared/types/types";
+import { CharacterInfoProps } from "../shared/types/types";
 
-export const CharacterDetails = ({ character }: CardProps) => {
+export const CharacterDetails = ({ character }: CharacterInfoProps) => {
   const navigate = useNavigate();
 
   const backHandler = () => {
