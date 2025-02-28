@@ -1,21 +1,21 @@
 import { Box } from "@mui/material";
-import Grid from "@mui/material/Grid2";
+import Grid2 from "@mui/material/Grid2";
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-
 import { CharacterItemSearch } from "./CharacterItemSearch";
-import { useCharacterNavigation } from "../hooks/useCharacterNavigation";
+import { PATH } from "../shared/constants/constants";
 import { CharactersListProps } from "../shared/types/types";
 
 export const CharactersList = ({ characters }: CharactersListProps) => {
-  const navigate = useCharacterNavigation();
+  const navigate = useNavigate();
   const handleClick = (id: number) => {
-    navigate(id);
+    navigate(`${PATH.character}/${id}`);
   };
   return (
     <Box>
-      <Grid container spacing={3} justifyContent="center">
+      <Grid2 container spacing={3} justifyContent="center">
         {characters.map((character) => (
-          <Grid
+          <Box
             sx={{
               width: { xs: "100%", sm: "60%", md: "40%" },
               padding: 1,
@@ -26,9 +26,9 @@ export const CharactersList = ({ characters }: CharactersListProps) => {
             onClick={() => handleClick(character.id)}
           >
             <CharacterItemSearch character={character} />
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Grid2>
     </Box>
   );
 };

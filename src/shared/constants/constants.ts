@@ -27,7 +27,7 @@ export const PATH = {
   favorites: "favorites",
   history: "history",
   search: "search",
-  character: "character",
+  character: "/character",
   home: "/",
   page404: "*",
   dimensions: "#",

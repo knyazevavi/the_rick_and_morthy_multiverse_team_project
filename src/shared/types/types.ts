@@ -56,33 +56,33 @@ export type FormWrapperProps = {
 
 export type FeatureFlags = Record<string, boolean | undefined>;
 
-export interface SearchProps {
+export type SearchProps = {
   onSearch: (name: string) => void;
-}
+};
 
-export interface CardProps {
+export type CardProps = {
   character: Character;
-}
+};
 
 export type CharactersListProps = {
   characters: Character[];
   setPage: (page: number) => void;
 };
 
-export interface ErrorBoundaryState {
+export type ErrorBoundaryState = {
   hasError: boolean;
   error: Error | unknown;
-}
+};
 
-export interface CharacterImageProps {
+export type CharacterImageProps = {
   image: string;
   name: string;
-}
+};
 
-export interface CharacterStatusProps {
+export type CharacterStatusProps = {
   status: string;
   species: string;
-}
+};
 
 export type CharacterInfoProps = {
   character: Character;

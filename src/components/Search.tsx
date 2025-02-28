@@ -1,16 +1,16 @@
 import { TextField, Autocomplete, CircularProgress } from "@mui/material";
 import { useState, useEffect } from "react";
-
-import { useLazyGetCharactersQuery } from "../api/characterApi";
-import { useCharacterNavigation } from "../hooks/useCharacterNavigation";
+import { useNavigate } from "react-router-dom";
 import { useDebounce } from "../hooks/useDebounce";
+import { useLazyGetCharactersQuery } from "../api/characterApi";
+import { PATH } from "../shared/constants/constants";
 import { Character } from "../shared/types/types";
 
 export const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const [fetch, { data, isLoading }] = useLazyGetCharactersQuery();
-  const navigate = useCharacterNavigation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (debouncedSearchTerm) {
@@ -27,7 +27,7 @@ export const Search = () => {
     newValue: Character | null,
   ) => {
     if (newValue) {
-      navigate(newValue.id);
+      navigate(`${PATH.character}/${newValue.id}`);
     }
   };
 
