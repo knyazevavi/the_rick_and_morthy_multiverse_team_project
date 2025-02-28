@@ -1,4 +1,7 @@
-import { Typography, Container } from "@mui/material";
+import { Typography, Container, Box } from "@mui/material";
+
+import { Search } from "../components/Search";
+
 export const Home = () => {
   return (
     <Container sx={{ width: "100%" }}>
@@ -29,6 +32,9 @@ export const Home = () => {
       >
         Start your interdimensional journey now!
       </Typography>
+      <Box sx={{ width: "100%", maxWidth: 600, my: 4, margin: "0 auto" }}>
+        <Search />
+      </Box>
     </Container>
   );
 };

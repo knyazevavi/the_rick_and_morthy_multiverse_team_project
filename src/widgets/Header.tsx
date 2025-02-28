@@ -1,9 +1,10 @@
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import logo from "../assets/logo.png";
 import { useAppDispatch, useAppSelector } from "../hooks.ts";
 import { PATH } from "../shared/constants/constants.ts";
+import { NavigationButton } from "../shared/ui/NavigationButton";
 import { signout } from "../store/userSlice.ts";
 
 export const Header = () => {
@@ -36,35 +37,23 @@ export const Header = () => {
           <img src={logo} alt="Rick and Morty Logo" width="80" height="70" />
         </Typography>
         {isAuthenticated ? <span>Hi {username}</span> : null}
-
-        <div>
+        <Box>
           {isAuthenticated ? (
-            <Button
-              color="inherit"
-              component={Link}
-              to={PATH.home}
+            <NavigationButton
+              title="Logout"
+              params={PATH.home}
               onClick={handlerClick}
-            >
-              Logout
-            </Button>
+            />
           ) : (
             <>
-              <Button color="inherit" component={Link} to={PATH.signin}>
-                SignIn
-              </Button>
-              <Button color="inherit" component={Link} to={PATH.signup}>
-                SignUp
-              </Button>
+              <NavigationButton title="SignIn" params={PATH.signin} />
+              <NavigationButton title="Search" params={PATH.search} />
+              <NavigationButton title="SignUp" params={PATH.signup} />
             </>
           )}
-
-          <Button color="inherit" component={Link} to={PATH.favorites}>
-            Favorites
-          </Button>
-          <Button color="inherit" component={Link} to={PATH.history}>
-            History
-          </Button>
-        </div>
+          <NavigationButton title="Favorites" params={PATH.favorites} />
+          <NavigationButton title="History" params={PATH.history} />
+        </Box>
       </Toolbar>
     </AppBar>
   );

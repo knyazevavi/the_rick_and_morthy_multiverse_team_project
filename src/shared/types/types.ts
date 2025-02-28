@@ -12,6 +12,7 @@ export type UserState = {
 export type userRegistrationPayload = Omit<UserState, "isAuthenticated"> & {
   password: string;
   username: string;
+  email: string;
 };
 
 export type FavoriteState = {
@@ -54,3 +55,35 @@ export type FormWrapperProps = {
 };
 
 export type FeatureFlags = Record<string, boolean | undefined>;
+
+export type SearchProps = {
+  onSearch: (name: string) => void;
+};
+
+export type CardProps = {
+  character: Character;
+};
+
+export type CharactersListProps = {
+  characters: Character[];
+  setPage: (page: number) => void;
+};
+
+export type ErrorBoundaryState = {
+  hasError: boolean;
+  error: Error | unknown;
+};
+
+export type CharacterImageProps = {
+  image: string;
+  name: string;
+};
+
+export type CharacterStatusProps = {
+  status: string;
+  species: string;
+};
+
+export type CharacterInfoProps = {
+  character: Character;
+};

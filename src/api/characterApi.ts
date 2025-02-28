@@ -1,19 +1,27 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { BASE_URL, CHARACTER_ENDPOINT } from "../shared/constants/api";
+import { API } from "../shared/constants/api";
 import { Character } from "../shared/types/types";
 
 export const characterApi = createApi({
   reducerPath: "characterApi",
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: API.BASE_URL }),
   endpoints: (builder) => ({
-    getCharacters: builder.query<{ results: Character[] }, number>({
-      query: (page = 1) => `${CHARACTER_ENDPOINT}/?page=${page}`,
+    getCharacters: builder.query<
+      { results: Character[] },
+      { filter?: string; page: number }
+    >({
+      query: ({ page = 1, filter }) =>
+        `${API.CHARACTER}/?name=${filter}&page=${page}`,
     }),
     getCharacterById: builder.query<Character, string>({
-      query: (id) => `${CHARACTER_ENDPOINT}/${id}`,
+      query: (id) => `${API.CHARACTER}/${id}`,
     }),
   }),
 });
 
-export const { useGetCharactersQuery, useGetCharacterByIdQuery } = characterApi;
+export const {
+  useGetCharactersQuery,
+  useGetCharacterByIdQuery,
+  useLazyGetCharactersQuery,
+} = characterApi;

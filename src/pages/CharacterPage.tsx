@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Container, Typography } from "@mui/material";
 import { useParams, Navigate } from "react-router-dom";
 import { CharacterDetails } from "../components/CharacterDetails";
