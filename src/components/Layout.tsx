@@ -1,7 +1,8 @@
-import { Outlet } from "react-router-dom";
-import { Header } from "../widgets/Header";
-import { Footer } from "../widgets/Footer";
 import { Box } from "@mui/material";
+import { Outlet } from "react-router-dom";
+
+import { Footer } from "../widgets/Footer";
+import { Header } from "../widgets/Header";
 
 export const Layout = () => {
   return (

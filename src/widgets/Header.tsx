@@ -1,9 +1,19 @@
-import { AppBar, Toolbar, Typography, Box } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { NavigationButton } from "../shared/ui/NavigationButton";
 import logo from "../assets/logo.png";
+import { useAppDispatch, useAppSelector } from "../hooks.ts";
+import { PATH } from "../shared/constants/constants.ts";
+import { signout } from "../store/userSlice.ts";
 
 export const Header = () => {
+  const { isAuthenticated, username } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
+  const handlerClick = () => {
+    dispatch(signout());
+  };
+
   return (
     <AppBar position="static">
       <Toolbar
@@ -17,7 +27,7 @@ export const Header = () => {
         <Typography
           variant="h6"
           component={Link}
-          to="/"
+          to={PATH.home}
           sx={{
             textDecoration: "none",
             color: "inherit",
@@ -25,11 +35,28 @@ export const Header = () => {
         >
           <img src={logo} alt="Rick and Morty Logo" width="80" height="70" />
         </Typography>
+        {isAuthenticated ? <span>Hi {username}</span> : null}
         <Box>
-          <NavigationButton title="SignIn" params="#" />
-          <NavigationButton title="Search" params="/search" />
-          <NavigationButton title="Favorites" params="#" />
-          <NavigationButton title="History" params="#" />
+          {isAuthenticated ? (
+            <Button
+              color="inherit"
+              component={Link}
+              to={PATH.home}
+              onClick={handlerClick}
+            >
+              Logout
+            </Button>
+          ) : (
+            <>
+              <NavigationButton title="SignIn" params={PATH.signin} />
+              <NavigationButton title="Search" params="/search" />
+              <Button color="inherit" component={Link} to={PATH.signup}>
+                SignUp
+              </Button>
+            </>
+          )}
+          <NavigationButton title="Favorites" params={PATH.favorites} />
+          <NavigationButton title="History" params={PATH.history} />
         </Box>
       </Toolbar>
     </AppBar>

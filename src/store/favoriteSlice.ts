@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { favoriteInitialState } from "../shared/constants/constants";
 import { STORE_KEYS } from "../shared/constants/constants";
 

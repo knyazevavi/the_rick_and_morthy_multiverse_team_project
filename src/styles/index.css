@@ -11,6 +11,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {
+  margin: 0;
+}
+
 .button {
   width: 10vw;
   margin: 3vh;
