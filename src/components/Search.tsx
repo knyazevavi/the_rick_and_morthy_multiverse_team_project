@@ -1,10 +1,13 @@
 import { TextField, Autocomplete, CircularProgress } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDebounce } from "../hooks/useDebounce";
+
 import { useLazyGetCharactersQuery } from "../api/characterApi";
+import { useDebounce } from "../hooks/useDebounce";
+import { useAppSelector } from "../hooks.ts";
 import { PATH } from "../shared/constants/constants";
 import { Character } from "../shared/types/types";
+import { selectUser } from "../store/selectors/userSelectors.ts";
 
 export const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,6 +24,8 @@ export const Search = () => {
   const handleInputChange = (_: React.SyntheticEvent, value: string) => {
     setSearchTerm(value);
   };
+
+  const { isAuthenticated } = useAppSelector(selectUser);
 
   const handleChange = (
     _: React.SyntheticEvent | null,
@@ -39,6 +44,7 @@ export const Search = () => {
         getOptionLabel={(option) => option.name}
         loading={isLoading}
         onInputChange={handleInputChange}
+        disabled={!isAuthenticated}
         onChange={handleChange}
         sx={{
           mt: 20,
