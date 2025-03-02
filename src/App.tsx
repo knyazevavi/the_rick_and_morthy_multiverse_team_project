@@ -8,6 +8,7 @@ import { PageError } from "./pages/404.tsx";
 import { CharacterPage } from "./pages/CharacterPage";
 import { Home } from "./pages/Home";
 import { SearchPage } from "./pages/SearchPage";
+import { Favorites } from "./pages/Favorites.tsx";
 import { PATH } from "./shared/constants/constants.ts";
 
 export const App = () => {
@@ -19,7 +20,7 @@ export const App = () => {
           <Route path={PATH.signin} element={<LoginForm />} />
           <Route path={PATH.signup} element={<RegistrationForm />} />
           <Route element={<PrivateRoute />}>
-            <Route path={PATH.favorites} element={<>favorite</>} />
+            <Route path={PATH.favorites} element={<Favorites />} />
             <Route path={PATH.history} element={<>history</>} />
           </Route>
           <Route path={PATH.search} element={<SearchPage />} />
