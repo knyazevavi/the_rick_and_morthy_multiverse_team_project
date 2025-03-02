@@ -1,16 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { Layout } from "./components/Layout";
+import { LazyLoading } from "./components/LazyLoading.tsx";
 import { PrivateRoute } from "./components/PrivateRoute.tsx";
-import { LoginForm } from "./components/Sign-in.tsx";
-import { RegistrationForm } from "./components/Sign-up.tsx";
-import { PageError } from "./pages/404.tsx";
-import { CharacterPage } from "./pages/CharacterPage";
-import { Home } from "./pages/Home";
-import { SearchPage } from "./pages/SearchPage";
 import { PATH } from "./shared/constants/constants.ts";
 
 export const App = () => {
+  const {
+    Home,
+    SearchPage,
+    CharacterPage,
+    LoginForm,
+    RegistrationForm,
+    PageError,
+  } = LazyLoading.loadComponents();
   return (
     <Router>
       <Routes>

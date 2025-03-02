@@ -39,3 +39,18 @@ export const USER_ENTITIES = {
   username: "username",
   password: "password",
 } as const;
+
+export const LAZY_MODULES = {
+  Home: { path: "./../pages/Home", exportName: "Home" },
+  SearchPage: { path: "./../pages/SearchPage", exportName: "SearchPage" },
+  CharacterPage: {
+    path: "./../pages/CharacterPage",
+    exportName: "CharacterPage",
+  },
+  LoginForm: { path: "./../components/Sign-in.tsx", exportName: "LoginForm" },
+  RegistrationForm: {
+    path: "./../components/Sign-up.tsx",
+    exportName: "RegistrationForm",
+  },
+  PageError: { path: "./../pages/404.tsx", exportName: "PageError" },
+};
