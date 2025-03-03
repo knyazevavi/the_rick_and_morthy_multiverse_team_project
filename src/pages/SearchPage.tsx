@@ -1,7 +1,7 @@
 import { Container, Box } from "@mui/material";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-
+import { PaginationButton } from "../shared/ui/PaginationButton";
 import { useGetCharactersQuery } from "../api/characterApi";
 import { CharactersList } from "../components/CharactersList";
 import { Loader } from "../components/Loader";
@@ -21,7 +21,14 @@ export const SearchPage = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <CharactersList setPage={setPage} characters={data?.results || []} />
+        <>
+          <CharactersList setPage={setPage} characters={data?.results || []} />
+          <PaginationButton
+            setPage={setPage}
+            pageNumber={page}
+            totalPages={data?.info?.pages || 1}
+          />
+        </>
       )}
     </Container>
   );

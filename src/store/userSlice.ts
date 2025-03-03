@@ -11,6 +11,7 @@ const userSlice = createSlice({
     signin: (state, action: PayloadAction<string>) => {
       state.username = action.payload;
       state.isAuthenticated = true;
+      localStorage.setItem(STORE_KEYS.USER, JSON.stringify(state));
     },
 
     signup: (state, action: PayloadAction<userRegistrationPayload>) => {

@@ -87,3 +87,16 @@ export type CharacterStatusProps = {
 export type CharacterInfoProps = {
   character: Character;
 };
+
+export type TInfoQuery = {
+  count: number | null;
+  next: string | null;
+  pages: number | null;
+  prev: string | null;
+};
+
+export type TPaginationButton = {
+  setPage: (page: number) => void;
+  pageNumber: number;
+  totalPages: number;
+};
