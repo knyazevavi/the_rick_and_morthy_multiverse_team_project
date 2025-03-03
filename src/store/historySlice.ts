@@ -8,10 +8,8 @@ const historySlice = createSlice({
   initialState: historyInitialState,
   reducers: {
     addSearchItem: (state, action: PayloadAction<string>) => {
-      state.history.unshift(action.payload);
-      if (state.history.length > 10) {
-        state.history.pop();
-      }
+      const newHistory = new Set([action.payload, ...state.history]);
+      state.history = Array.from(newHistory).slice(0, 10);
       localStorage.setItem(STORE_KEYS.HISTORY, JSON.stringify(state.history));
     },
   },

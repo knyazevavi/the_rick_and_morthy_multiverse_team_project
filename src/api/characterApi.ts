@@ -1,14 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
 import { API } from "../shared/constants/api";
 import { Character } from "../shared/types/types";
+import { TInfoQuery } from "../shared/types/types";
 
 export const characterApi = createApi({
   reducerPath: "characterApi",
   baseQuery: fetchBaseQuery({ baseUrl: API.BASE_URL }),
+  tagTypes: ["Characters"],
   endpoints: (builder) => ({
     getCharacters: builder.query<
-      { results: Character[] },
+      { results: Character[]; info: TInfoQuery },
       { filter?: string; page: number }
     >({
       query: ({ page = 1, filter }) =>
