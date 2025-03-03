@@ -54,3 +54,5 @@ export const LAZY_MODULES = {
   },
   PageError: { path: "./../pages/404.tsx", exportName: "PageError" },
 };
+
+export const ERROR_404_URL = "./../../pages/404.tsx";

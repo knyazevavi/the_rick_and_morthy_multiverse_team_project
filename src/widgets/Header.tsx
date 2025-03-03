@@ -5,11 +5,12 @@ import logo from "../assets/logo.png";
 import { useAppDispatch, useAppSelector } from "../hooks.ts";
 import { PATH } from "../shared/constants/constants.ts";
 import { NavigationButton } from "../shared/ui/NavigationButton";
+import { selectUser } from "../store/selectors/userSelectors.ts";
 import { signout } from "../store/userSlice.ts";
 
 export const Header = () => {
-  const { isAuthenticated, username } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const { isAuthenticated, username } = useAppSelector(selectUser);
 
   const handlerClick = () => {
     dispatch(signout());
@@ -39,20 +40,22 @@ export const Header = () => {
         {isAuthenticated ? <span>Hi {username}</span> : null}
         <Box>
           {isAuthenticated ? (
-            <NavigationButton
-              title="Logout"
-              params={PATH.home}
-              onClick={handlerClick}
-            />
+            <>
+              <NavigationButton title="Search" params={PATH.search} />
+              <NavigationButton title="Favorites" params={PATH.favorites} />
+              <NavigationButton title="History" params={PATH.history} />
+              <NavigationButton
+                title="Logout"
+                params={PATH.home}
+                onClick={handlerClick}
+              />
+            </>
           ) : (
             <>
               <NavigationButton title="SignIn" params={PATH.signin} />
-              <NavigationButton title="Search" params={PATH.search} />
               <NavigationButton title="SignUp" params={PATH.signup} />
             </>
           )}
-          <NavigationButton title="Favorites" params={PATH.favorites} />
-          <NavigationButton title="History" params={PATH.history} />
         </Box>
       </Toolbar>
     </AppBar>
