@@ -39,3 +39,5 @@ export const USER_ENTITIES = {
   username: "username",
   password: "password",
 } as const;
+
+export const ERROR_404_URL = "./../../pages/404.tsx";
