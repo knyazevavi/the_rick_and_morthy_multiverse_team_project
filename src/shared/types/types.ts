@@ -1,3 +1,5 @@
+import { SerializedError } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { ReactNode } from "react";
 
 export type HistoryState = {
@@ -60,10 +62,6 @@ export type SearchProps = {
   onSearch: (name: string) => void;
 };
 
-export type CardProps = {
-  character: Character;
-};
-
 export type CharactersListProps = {
   characters: Character[];
   setPage: (page: number) => void;
@@ -86,4 +84,8 @@ export type CharacterStatusProps = {
 
 export type CharacterInfoProps = {
   character: Character;
+};
+
+export type ErrorHandlerProps = {
+  error: FetchBaseQueryError | SerializedError;
 };

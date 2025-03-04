@@ -22,9 +22,9 @@ export const App = () => {
           <Route element={<PrivateRoute />}>
             <Route path={PATH.favorites} element={<Favorites />} />
             <Route path={PATH.history} element={<>history</>} />
+            <Route path={PATH.search} element={<SearchPage />} />
+            <Route path={PATH.character + "/:id"} element={<CharacterPage />} />
           </Route>
-          <Route path={PATH.search} element={<SearchPage />} />
-          <Route path={PATH.character + "/:id"} element={<CharacterPage />} />
           <Route path={PATH.page404} element={<PageError />} />
         </Route>
       </Routes>

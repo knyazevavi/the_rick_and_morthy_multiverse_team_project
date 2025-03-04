@@ -10,9 +10,7 @@ const userSlice = createSlice({
   reducers: {
     signin: (state, action: PayloadAction<string>) => {
       state.username = action.payload;
-      if (localStorage.getItem(state.username)) {
-        state.isAuthenticated = true;
-      }
+      state.isAuthenticated = true;
     },
 
     signup: (state, action: PayloadAction<userRegistrationPayload>) => {
@@ -20,11 +18,12 @@ const userSlice = createSlice({
 
       if (email) {
         state.username = username;
-        localStorage.setItem(email, JSON.stringify(action.payload));
+        state.isAuthenticated = true;
+        localStorage.setItem(
+          email,
+          JSON.stringify({ ...action.payload, isAuthenticated: true }),
+        );
       }
-
-      state.isAuthenticated = true;
-      localStorage.setItem(STORE_KEYS.USER, JSON.stringify(state));
     },
     signout: (state) => {
       state.username = "";
