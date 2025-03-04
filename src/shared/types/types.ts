@@ -1,6 +1,6 @@
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { ReactNode } from "react";
+import { ReactNode, ComponentType, LazyExoticComponent } from "react";
 
 export type HistoryState = {
   history: string[];
@@ -89,3 +89,13 @@ export type CharacterInfoProps = {
 export type ErrorHandlerProps = {
   error: FetchBaseQueryError | SerializedError;
 };
+
+export type LazyModuleProps = {
+  path: string;
+  exportName: string;
+};
+
+export type LazyComponentType = Record<
+  string,
+  LazyExoticComponent<ComponentType<unknown>>
+>;
