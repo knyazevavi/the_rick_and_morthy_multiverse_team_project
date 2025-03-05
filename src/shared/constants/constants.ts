@@ -25,6 +25,7 @@ export const favoriteInitialState: FavoriteState = {
 export const PATH = {
   signin: "signin",
   signup: "signup",
+  admin: "admin",
   favorites: "favorites",
   history: "history",
   search: "search",
