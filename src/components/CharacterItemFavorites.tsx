@@ -12,7 +12,7 @@ export const CharacterItemFavorites = ({ character }: CharacterInfoProps) => {
   };
 
   return (
-    <Grid key={character.name} size={{ xs: 12, lg: 6 }} width={"100%"}>
+    <Grid size={{ xs: 12, lg: 6 }} width={"100%"}>
       <Box
         sx={{
           minWidth: { xs: "100%", sm: "550px" },
