@@ -1,5 +1,5 @@
-import { BrowserRouter } from "react-router-dom";
 import { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 
 import { NavigationButtonTypes } from "./../shared/types/storiesTypes.ts";
 import { NavigationButton } from "./../shared/ui/NavigationButton.tsx";
