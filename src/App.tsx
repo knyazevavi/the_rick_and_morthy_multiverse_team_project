@@ -12,6 +12,7 @@ import { PATH } from "./shared/constants/constants.ts";
 
 export const App = () => {
   const { CharacterPage } = LazyLoading.loadComponents();
+
   return (
     <Router>
       <Routes>
