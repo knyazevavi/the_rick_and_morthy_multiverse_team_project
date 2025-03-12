@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import { Outlet } from "react-router-dom";
 
+import { LazyOutlet } from "./LazyOutlet";
 import { Footer } from "../widgets/Footer";
 import { Header } from "../widgets/Header";
 
@@ -15,7 +15,7 @@ export const Layout = () => {
     >
       <Header />
       <Box component="main" sx={{ flex: 1, p: 3 }}>
-        <Outlet />
+        <LazyOutlet />
       </Box>
       <Footer />
     </Box>
