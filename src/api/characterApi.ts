@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API } from "../shared/constants/api";
 import { Character } from "../shared/types/types";
-import { TInfoQuery } from "../shared/types/types";
+import { InfoQueryType } from "../shared/types/types";
 
 export const characterApi = createApi({
   reducerPath: "characterApi",
@@ -9,7 +9,7 @@ export const characterApi = createApi({
   tagTypes: ["Characters"],
   endpoints: (builder) => ({
     getCharacters: builder.query<
-      { results: Character[]; info: TInfoQuery },
+      { results: Character[]; info: InfoQueryType },
       { filter?: string; page: number }
     >({
       query: ({ page = 1, filter }) =>

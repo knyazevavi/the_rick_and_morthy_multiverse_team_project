@@ -1,4 +1,5 @@
 import { HistoryState, UserState, FavoriteState } from "../types/types";
+import { LazyModuleProps } from "../types/types";
 
 export const STORE_KEYS = {
   FAVORITES: "favorites",
@@ -39,3 +40,12 @@ export const USER_ENTITIES = {
   username: "username",
   password: "password",
 } as const;
+
+export const LAZY_MODULES: Record<string, LazyModuleProps> = {
+  CharacterPage: {
+    path: "./../pages/CharacterPage",
+    exportName: "CharacterPage",
+  },
+};
+
+export const ERROR_404_URL = "./../../pages/404.tsx";

@@ -1,12 +1,12 @@
 import { Button, Box, Typography } from "@mui/material";
-import { TPaginationButton } from "../types/types";
+import { PaginationButtonType } from "../types/types";
 import { paginationButtonStyles } from "../../styles/common";
 
 export const PaginationButton = ({
   setPage,
   pageNumber,
   totalPages,
-}: TPaginationButton) => {
+}: PaginationButtonType) => {
   const handleNextPage = () => {
     if (pageNumber < totalPages) {
       setPage(pageNumber + 1);

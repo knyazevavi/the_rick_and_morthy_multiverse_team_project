@@ -1,4 +1,6 @@
-import { ReactNode } from "react";
+import { SerializedError } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { ReactNode, ComponentType, LazyExoticComponent } from "react";
 
 export type HistoryState = {
   history: string[];
@@ -60,10 +62,6 @@ export type SearchProps = {
   onSearch: (name: string) => void;
 };
 
-export type CardProps = {
-  character: Character;
-};
-
 export type CharactersListProps = {
   characters: Character[];
   setPage: (page: number) => void;
@@ -88,14 +86,28 @@ export type CharacterInfoProps = {
   character: Character;
 };
 
-export type TInfoQuery = {
-  count: number | null;
-  next: string | null;
-  pages: number | null;
-  prev: string | null;
+export type ErrorHandlerProps = {
+  error: FetchBaseQueryError | SerializedError;
 };
 
-export type TPaginationButton = {
+export type LazyModuleProps = {
+  path: string;
+  exportName: string;
+};
+
+export type LazyComponentType = Record<
+  string,
+  LazyExoticComponent<ComponentType<unknown>>
+>;
+
+export type InfoQueryType = {
+  count?: number;
+  next?: string;
+  pages?: number;
+  prev?: string;
+};
+
+export type PaginationButtonType = {
   setPage: (page: number) => void;
   pageNumber: number;
   totalPages: number;
