@@ -34,6 +34,9 @@ export const FeatureFlagToggle = () => {
     }
   };
 
+  const handlerChangeValue = (e) => setFlagKey(e.target.value);
+  const handlerChangeChecked = (e) => setFlagKey(e.target.checked);
+
   return (
     <Box
       sx={{
@@ -51,7 +54,7 @@ export const FeatureFlagToggle = () => {
         label="Please use key with name featureSharedLinkByTelegram"
         variant="outlined"
         value={flagKey}
-        onChange={(e) => setFlagKey(e.target.value)}
+        onChange={handlerChangeValue}
         fullWidth
         sx={{ marginBottom: 2 }}
       />
@@ -59,7 +62,7 @@ export const FeatureFlagToggle = () => {
         control={
           <Checkbox
             checked={flagValue}
-            onChange={(e) => setFlagValue(e.target.checked)}
+            onChange={handlerChangeChecked}
             color="primary"
           />
         }
