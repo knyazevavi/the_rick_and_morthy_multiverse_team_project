@@ -9,6 +9,7 @@ export const STORE_KEYS = {
 
 export const historyInitialState: HistoryState = {
   history: [],
+  username: "",
 };
 
 export const userInitialState: UserState = {

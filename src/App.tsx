@@ -6,6 +6,7 @@ import { PrivateRoute } from "./components/PrivateRoute.tsx";
 import { LoginForm } from "./components/Sign-in.tsx";
 import { RegistrationForm } from "./components/Sign-up.tsx";
 import { PageError } from "./pages/404.tsx";
+import { History } from "./pages/History.tsx";
 import { Home } from "./pages/Home.tsx";
 import { SearchPage } from "./pages/SearchPage.tsx";
 import { PATH } from "./shared/constants/constants.ts";
@@ -22,7 +23,7 @@ export const App = () => {
           <Route path={PATH.signup} element={<RegistrationForm />} />
           <Route element={<PrivateRoute />}>
             <Route path={PATH.favorites} element={<>favorite</>} />
-            <Route path={PATH.history} element={<>history</>} />
+            <Route path={PATH.history} element={<History />} />
             <Route path={PATH.search} element={<SearchPage />} />
             <Route path={PATH.character + "/:id"} element={<CharacterPage />} />
           </Route>
