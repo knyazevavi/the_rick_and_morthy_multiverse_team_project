@@ -6,13 +6,12 @@ import { PrivateRoute } from "./components/PrivateRoute.tsx";
 import { LoginForm } from "./components/Sign-in.tsx";
 import { RegistrationForm } from "./components/Sign-up.tsx";
 import { PageError } from "./pages/404.tsx";
-import { History } from "./pages/History.tsx";
 import { Home } from "./pages/Home.tsx";
 import { SearchPage } from "./pages/SearchPage.tsx";
 import { PATH } from "./shared/constants/constants.ts";
 
 export const App = () => {
-  const { CharacterPage } = LazyLoading.loadComponents();
+  const { CharacterPage, History } = LazyLoading.loadComponents();
 
   return (
     <Router>

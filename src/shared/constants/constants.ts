@@ -47,6 +47,10 @@ export const LAZY_MODULES: Record<string, LazyModuleProps> = {
     path: "./../pages/CharacterPage",
     exportName: "CharacterPage",
   },
+  History: {
+    path: "./../pages/History",
+    exportName: "History",
+  },
 };
 
 export const ERROR_404_URL = "./../../pages/404.tsx";
