@@ -100,3 +100,16 @@ export type LazyComponentType = Record<
   string,
   LazyExoticComponent<ComponentType<unknown>>
 >;
+
+export type InfoQueryType = {
+  count?: number;
+  next?: string;
+  pages?: number;
+  prev?: string;
+};
+
+export type PaginationButtonType = {
+  setPage: (page: number) => void;
+  pageNumber: number;
+  totalPages: number;
+};

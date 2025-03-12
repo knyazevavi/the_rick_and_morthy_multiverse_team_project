@@ -22,10 +22,8 @@ const historySlice = createSlice({
             state.history.splice(i, 1);
           }
         });
-        state.history.unshift(newValue);
-        if (state.history.length > 10) {
-          state.history.pop();
-        }
+        const newHistory = new Set([newValue, ...state.history]);
+        state.history = Array.from(newHistory).slice(0, 10);
         localStorage.setItem(
           `${username}-${STORE_KEYS.HISTORY}`,
           JSON.stringify(state.history),
