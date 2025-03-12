@@ -1,14 +1,18 @@
 import { Typography, Container, Box } from "@mui/material";
+import { useEffect } from "react";
 
 import { Search } from "../components/Search";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { addUserFavoritesList } from "../store/historySlice";
+import { addUserHistoryList } from "../store/historySlice";
 import { selectUser } from "../store/selectors/userSelectors";
 
 export const Home = () => {
   const dispatch = useAppDispatch();
   const { username } = useAppSelector(selectUser);
-  dispatch(addUserFavoritesList(username));
+
+  useEffect(() => {
+    if (username) dispatch(addUserHistoryList(username));
+  }, [username, dispatch]);
 
   return (
     <Container sx={{ width: "100%" }}>

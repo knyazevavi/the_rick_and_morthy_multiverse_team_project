@@ -30,7 +30,7 @@ const historySlice = createSlice({
         );
       }
     },
-    addUserFavoritesList: (
+    addUserHistoryList: (
       state: HistoryState,
       action: PayloadAction<string | undefined>,
     ) => {
@@ -43,5 +43,5 @@ const historySlice = createSlice({
   },
 });
 
-export const { addSearchItem, addUserFavoritesList } = historySlice.actions;
+export const { addSearchItem, addUserHistoryList } = historySlice.actions;
 export default historySlice.reducer;
