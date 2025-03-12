@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import { FeatureFlagToggle } from "./components/FeatureFlagToggle";
 import { Layout } from "./components/Layout";
 import { LazyLoading } from "./components/LazyLoading.tsx";
 import { PrivateRoute } from "./components/PrivateRoute.tsx";
@@ -20,6 +21,7 @@ export const App = () => {
           <Route index element={<Home />} />
           <Route path={PATH.signin} element={<LoginForm />} />
           <Route path={PATH.signup} element={<RegistrationForm />} />
+          <Route path={PATH.admin} element={<FeatureFlagToggle />} />
           <Route element={<PrivateRoute />}>
             <Route path={PATH.favorites} element={<>favorite</>} />
             <Route path={PATH.history} element={<>history</>} />
