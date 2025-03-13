@@ -3,7 +3,8 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { ReactNode, ComponentType, LazyExoticComponent } from "react";
 
 export type HistoryState = {
-  history: string[];
+  history: Character[];
+  username: string | undefined;
 };
 
 export type UserState = {

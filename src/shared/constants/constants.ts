@@ -9,6 +9,7 @@ export const STORE_KEYS = {
 
 export const historyInitialState: HistoryState = {
   history: [],
+  username: "",
 };
 
 export const userInitialState: UserState = {
@@ -46,6 +47,10 @@ export const LAZY_MODULES: Record<string, LazyModuleProps> = {
   CharacterPage: {
     path: "./../pages/CharacterPage",
     exportName: "CharacterPage",
+  },
+  History: {
+    path: "./../pages/History",
+    exportName: "History",
   },
 };
 

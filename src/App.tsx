@@ -12,7 +12,7 @@ import { SearchPage } from "./pages/SearchPage.tsx";
 import { PATH } from "./shared/constants/constants.ts";
 
 export const App = () => {
-  const { CharacterPage } = LazyLoading.loadComponents();
+  const { CharacterPage, History } = LazyLoading.loadComponents();
 
   return (
     <Router>
@@ -24,7 +24,7 @@ export const App = () => {
           <Route path={PATH.admin} element={<FeatureFlagToggle />} />
           <Route element={<PrivateRoute />}>
             <Route path={PATH.favorites} element={<>favorite</>} />
-            <Route path={PATH.history} element={<>history</>} />
+            <Route path={PATH.history} element={<History />} />
             <Route path={PATH.search} element={<SearchPage />} />
             <Route path={PATH.character + "/:id"} element={<CharacterPage />} />
           </Route>
