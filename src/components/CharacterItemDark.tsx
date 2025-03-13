@@ -8,8 +8,8 @@ import { CharacterInfoProps } from "../shared/types/types";
 
 export const CharacterItemDark = ({ character }: CharacterInfoProps) => {
   const navigate = useNavigate();
-  const handleClick = (id: number) => {
-    navigate(`${PATH.character}/${id}`);
+  const handleClick = () => {
+    navigate(`${PATH.character}/${character.id}`);
   };
 
   return (
@@ -20,7 +20,7 @@ export const CharacterItemDark = ({ character }: CharacterInfoProps) => {
           maxWidth: { sm: "650px" },
           margin: "auto",
         }}
-        onClick={() => handleClick(character.id)}
+        onClick={handleClick}
       >
         <Card
           sx={{
