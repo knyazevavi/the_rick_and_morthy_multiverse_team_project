@@ -1,8 +1,19 @@
 import { Typography, Container, Box } from "@mui/material";
+import { useEffect } from "react";
 
 import { Search } from "../components/Search";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { addUserHistoryList } from "../store/historySlice";
+import { selectUser } from "../store/selectors/userSelectors";
 
 export const Home = () => {
+  const dispatch = useAppDispatch();
+  const { username } = useAppSelector(selectUser);
+
+  useEffect(() => {
+    if (username) dispatch(addUserHistoryList(username));
+  }, [username, dispatch]);
+
   return (
     <Container sx={{ width: "100%" }}>
       <Typography variant="h3" sx={{ textAlign: "center", my: 4 }}>

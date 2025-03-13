@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import { useLazyGetCharactersQuery } from "../api/characterApi";
 import { useDebounce } from "../hooks/useDebounce";
-import { useAppSelector } from "../hooks.ts";
+import { useAppDispatch, useAppSelector } from "../hooks.ts";
 import { PATH } from "../shared/constants/constants";
 import { Character } from "../shared/types/types";
+import { addSearchItem } from "../store/historySlice.ts";
 import { selectUser } from "../store/selectors/userSelectors.ts";
 
 export const Search = () => {
@@ -14,6 +15,7 @@ export const Search = () => {
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const [fetch, { data, isLoading }] = useLazyGetCharactersQuery();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (debouncedSearchTerm) {
@@ -25,13 +27,14 @@ export const Search = () => {
     setSearchTerm(value);
   };
 
-  const { isAuthenticated } = useAppSelector(selectUser);
+  const { username, isAuthenticated } = useAppSelector(selectUser);
 
   const handleChange = (
     _: React.SyntheticEvent | null,
     newValue: Character | null,
   ) => {
     if (newValue) {
+      dispatch(addSearchItem({ newValue, username }));
       navigate(`${PATH.character}/${newValue.id}`);
     }
   };
