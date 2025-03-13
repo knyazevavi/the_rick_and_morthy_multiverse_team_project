@@ -7,15 +7,13 @@ import { CharacterDetails } from "../components/CharacterDetails";
 import { ErrorHandler } from "../components/ErrorHandler";
 import { Loader } from "../components/Loader";
 import { toggleFavorite } from "../store/favoriteSlice.ts";
-import { RootState } from "../store/store.ts";
+import { selectFavorites } from "../store/selectors/userSelectors.ts";
 
 export const CharacterPage = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
 
-  const favorites = useSelector(
-    (state: RootState) => state.favorites.favorites,
-  );
+  const favorites = useSelector(selectFavorites);
 
   const {
     data: character,
