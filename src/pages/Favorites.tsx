@@ -15,6 +15,7 @@ import {
   addUploadFavorites,
   changeStartItem,
 } from "../store/uploadFavoritesSlice";
+import { sliceArray } from "../utils/getSliceFavorites";
 
 export const Favorites = () => {
   const dispatch = useAppDispatch();
@@ -22,9 +23,8 @@ export const Favorites = () => {
   const { characters, item } = useAppSelector(selectUploadFavorites);
 
   let dataCharacters: Array<Character> | null;
-  const countCharacters = 10;
-  const totalCharacters: number = favorites.length;
-  const slicedFavoritesID = favorites.slice(item, item + countCharacters);
+  const { slicedFavoritesID, totalCharacters } = sliceArray(favorites, item);
+
   const { ref, inView } = useInView({
     threshold: 0.5,
   });
