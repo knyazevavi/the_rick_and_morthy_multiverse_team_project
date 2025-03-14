@@ -1,32 +1,40 @@
 import { Container, Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { useEffect, useState, useMemo } from "react";
-import { Character } from "../shared/types/types";
-import { CharacterItemFavorites } from "../components/CharacterItemFavorites";
-import { Loader } from "../components/Loader";
-import { useGetCharacterByIdQuery } from "../api/characterApi";
+import { useEffect, useMemo } from "react";
 import { useInView } from "react-intersection-observer";
-import { favoriteInitialState } from "../shared/constants/constants";
+
+import { useGetCharacterByIdQuery } from "../api/characterApi";
+import { CharacterItemDark } from "../components/CharacterItemDark";
+import { ErrorHandler } from "../components/ErrorHandler";
+import { Loader } from "../components/Loader";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { Character } from "../shared/types/types";
+import { selectUploadFavorites } from "../store/selectors/favoritesSelectors";
+import { selectFavorites } from "../store/selectors/userSelectors";
+import {
+  addUploadFavorites,
+  changeStartItem,
+} from "../store/uploadFavoritesSlice";
 
 export const Favorites = () => {
+  const dispatch = useAppDispatch();
+  const favorites = useAppSelector(selectFavorites);
+  const { characters, item } = useAppSelector(selectUploadFavorites);
+
+  let dataCharacters: Array<Character> | null;
   const countCharacters = 10;
-  const [startItem, setStartItem] = useState<number>(0);
-  const [characters, setCharacters] = useState<Character[]>([]);
-  const totalFavoritesID: Array<number> = favoriteInitialState.favorites;
-  // const totalFavoritesID: Array<number> = [...Array(30)].map((_, i) => i + 1);
-  const totalCharacters: number = totalFavoritesID.length;
-  const slicedFavoritesID = totalFavoritesID.slice(
-    startItem,
-    startItem + countCharacters,
-  );
+  const totalCharacters: number = favorites.length;
+  const slicedFavoritesID = favorites.slice(item, item + countCharacters);
   const { ref, inView } = useInView({
     threshold: 0.5,
   });
 
-  const { data, error, isLoading } =
-    slicedFavoritesID.length > 0
-      ? useGetCharacterByIdQuery(slicedFavoritesID)
-      : { data: null, error: null, isLoading: false };
+  const { data, error, isLoading } = useGetCharacterByIdQuery(
+    `${slicedFavoritesID}`,
+  );
+
+  if (!data || slicedFavoritesID.length < 1) dataCharacters = null;
+  else dataCharacters = Array.isArray(data) ? data : [data];
 
   const isNotTotalCount = useMemo<boolean>(
     () => totalCharacters > characters.length,
@@ -34,22 +42,19 @@ export const Favorites = () => {
   );
 
   useEffect(() => {
-    if (data) {
-      setCharacters((prev) => {
-        const resData = Array.isArray(data) ? data : [data];
-        if (prev.length > 0 && prev[0].id == resData[0].id) return resData;
-        return [...prev, ...resData];
-      });
+    if (dataCharacters) {
+      dispatch(addUploadFavorites(dataCharacters));
     }
-  }, [data]);
+  }, [dataCharacters, dispatch]);
 
   useEffect(() => {
     if (characters && inView) {
-      setStartItem((prev) => prev + countCharacters);
+      let startItem = item + (dataCharacters ? dataCharacters.length : 0);
+      dispatch(changeStartItem(startItem));
     }
-  }, [inView]);
+  }, [inView, dispatch]);
 
-  if (!isLoading && !data)
+  if (!isLoading && !dataCharacters && favorites.length < 1)
     return (
       <Box
         sx={{ display: "flex", justifyContent: "center", fontSize: "1.5rem" }}
@@ -57,18 +62,15 @@ export const Favorites = () => {
         empty
       </Box>
     );
-  if (isLoading && !data) return <Loader />;
-  if (error) return <div>Error: {error}</div>;
+  if (isLoading && !dataCharacters) return <Loader />;
+  if (error) return <ErrorHandler error={error} />;
 
   return (
     <Container sx={{ mt: "50px" }}>
       <Box>
         <Grid container spacing={6}>
           {characters.map((character: Character) => (
-            <CharacterItemFavorites
-              key={character.name}
-              character={character}
-            />
+            <CharacterItemDark key={character.name} character={character} />
           ))}
         </Grid>
         {isLoading && isNotTotalCount && (

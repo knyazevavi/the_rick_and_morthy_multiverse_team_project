@@ -1,19 +1,24 @@
 import { Container, Button } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { useGetCharacterByIdQuery } from "../api/characterApi";
 import { CharacterDetails } from "../components/CharacterDetails";
 import { ErrorHandler } from "../components/ErrorHandler";
 import { Loader } from "../components/Loader";
+import { useAppDispatch, useAppSelector } from "../hooks.ts";
 import { toggleFavorite } from "../store/favoriteSlice.ts";
-import { selectFavorites } from "../store/selectors/userSelectors.ts";
+import {
+  selectFavorites,
+  selectUser,
+} from "../store/selectors/userSelectors.ts";
+import { clearListUpload } from "../store/uploadFavoritesSlice.ts";
 
 export const CharacterPage = () => {
   const { id } = useParams<{ id: string }>();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const favorites = useSelector(selectFavorites);
+  const { username } = useAppSelector(selectUser);
+  const favorites = useAppSelector(selectFavorites);
 
   const {
     data: character,
@@ -25,7 +30,9 @@ export const CharacterPage = () => {
 
   const handleFavoriteButton = () => {
     if (character) {
-      dispatch(toggleFavorite(character.id));
+      dispatch(clearListUpload());
+      const id: number = character.id;
+      dispatch(toggleFavorite({ id, username }));
     }
   };
 

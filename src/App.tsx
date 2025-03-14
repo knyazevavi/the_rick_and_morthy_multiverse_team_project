@@ -9,11 +9,10 @@ import { RegistrationForm } from "./components/Sign-up.tsx";
 import { PageError } from "./pages/404.tsx";
 import { Home } from "./pages/Home.tsx";
 import { SearchPage } from "./pages/SearchPage.tsx";
-import { Favorites } from "./pages/Favorites.tsx";
 import { PATH } from "./shared/constants/constants.ts";
 
 export const App = () => {
-  const { CharacterPage, History } = LazyLoading.loadComponents();
+  const { CharacterPage, History, Favorites } = LazyLoading.loadComponents();
 
   return (
     <Router>

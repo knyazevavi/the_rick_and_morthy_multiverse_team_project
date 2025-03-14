@@ -11,9 +11,11 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import storageSession from "redux-persist/lib/storage/session";
 
 import favoriteSlice from "./favoriteSlice";
 import historySlice from "./historySlice";
+import uploadFavoritesSlice from "./uploadFavoritesSlice";
 import userSlice from "./userSlice";
 import { characterApi } from "../api/characterApi";
 import { loggerMiddleware } from "../shared/middlewares/loggerMiddleware";
@@ -25,11 +27,20 @@ const rootPersistConfig = {
   blacklist: [`${[characterApi.reducerPath]}`],
 };
 
+const uploadFavoritesPersistConfig = {
+  key: "uploadFavorites",
+  storage: storageSession,
+};
+
 const rootReducer = combineReducers({
   user: userSlice,
   history: historySlice,
   favorites: favoriteSlice,
   [characterApi.reducerPath]: characterApi.reducer,
+  uploadFavorites: persistReducer(
+    uploadFavoritesPersistConfig,
+    uploadFavoritesSlice,
+  ),
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
