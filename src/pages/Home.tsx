@@ -3,6 +3,7 @@ import { useEffect } from "react";
 
 import { Search } from "../components/Search";
 import { useAppDispatch, useAppSelector } from "../hooks";
+import { addUserFavoritesList } from "../store/favoriteSlice";
 import { addUserHistoryList } from "../store/historySlice";
 import { selectUser } from "../store/selectors/userSelectors";
 
@@ -12,6 +13,10 @@ export const Home = () => {
 
   useEffect(() => {
     if (username) dispatch(addUserHistoryList(username));
+  }, [username, dispatch]);
+
+  useEffect(() => {
+    if (username) dispatch(addUserFavoritesList(username));
   }, [username, dispatch]);
 
   return (

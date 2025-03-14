@@ -20,6 +20,12 @@ export type userRegistrationPayload = Omit<UserState, "isAuthenticated"> & {
 
 export type FavoriteState = {
   favorites: number[];
+  username: string | undefined;
+};
+
+export type uploadFavoritesState = {
+  characters: Character[];
+  item: number;
 };
 
 export type Character = {

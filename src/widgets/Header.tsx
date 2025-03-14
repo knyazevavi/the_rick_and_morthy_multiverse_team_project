@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../hooks.ts";
 import { PATH } from "../shared/constants/constants.ts";
 import { NavigationButton } from "../shared/ui/NavigationButton";
 import { selectUser } from "../store/selectors/userSelectors.ts";
+import { clearListUpload } from "../store/uploadFavoritesSlice.ts";
 import { signout } from "../store/userSlice.ts";
 
 export const Header = () => {
@@ -13,6 +14,7 @@ export const Header = () => {
   const { isAuthenticated, username } = useAppSelector(selectUser);
 
   const handlerClick = () => {
+    dispatch(clearListUpload());
     dispatch(signout());
   };
 
